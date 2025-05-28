@@ -1,7 +1,17 @@
 import { Button } from "../ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -29,7 +39,7 @@ export function TimeRangePicker({
   const minutesDelta = 10;
   const minutes = Array.from(
     { length: 60 / minutesDelta },
-    (_, i) => i * minutesDelta
+    (_, i) => i * minutesDelta,
   );
 
   const [date, setDate] = useState<DateRange>({
@@ -38,13 +48,16 @@ export function TimeRangePicker({
   });
 
   const formatTimeDisplay = (date: DateRange) => {
-    
     if (!date?.from || !date?.to) return " 选择时间范围";
     return `${format(date.from, "yyyy-MM-dd HH:mm")} 至 ${format(date.to, "yyyy-MM-dd HH:mm")}`;
   };
 
   // 更新日期时间的辅助函数
-  const updateDateTime = (isStartDate: boolean, isHour: boolean, value: string) => {
+  const updateDateTime = (
+    isStartDate: boolean,
+    isHour: boolean,
+    value: string,
+  ) => {
     if (!date) return;
 
     const targetDate = isStartDate ? date.from : date.to;
@@ -52,7 +65,7 @@ export function TimeRangePicker({
       const newDate = new Date();
       setDate({
         ...date,
-        [isStartDate ? 'from' : 'to']: newDate
+        [isStartDate ? "from" : "to"]: newDate,
       });
       return;
     }
@@ -66,9 +79,8 @@ export function TimeRangePicker({
 
     setDate({
       ...date,
-      [isStartDate ? 'from' : 'to']: newDate
+      [isStartDate ? "from" : "to"]: newDate,
     });
-
 
     if (!date.from || !date.to) {
       onTimeRangeChange({
@@ -86,7 +98,9 @@ export function TimeRangePicker({
   // 获取默认分钟值
   const getDefaultMinutes = (targetDate?: Date) => {
     if (!targetDate) return "0";
-    return (Math.floor(targetDate.getMinutes() / minutesDelta + 0.5) * minutesDelta).toString();
+    return (
+      Math.floor(targetDate.getMinutes() / minutesDelta + 0.5) * minutesDelta
+    ).toString();
   };
 
   // 创建时间选择器组件
@@ -94,7 +108,10 @@ export function TimeRangePicker({
     <div className="flex flex-row gap-2 w-1/2">
       <Select
         onValueChange={(value) => updateDateTime(isStartDate, true, value)}
-        defaultValue={(isStartDate ? date.from?.getHours() : date.to?.getHours())?.toString()}
+        defaultValue={(isStartDate
+          ? date.from?.getHours()
+          : date.to?.getHours()
+        )?.toString()}
       >
         <SelectTrigger>
           <SelectValue placeholder="选择小时" />
@@ -134,7 +151,7 @@ export function TimeRangePicker({
             variant="outline"
             className={cn(
               "w-full justify-start text-left font-normal",
-              !timeRange.startDateTime && "text-muted-foreground"
+              !timeRange.startDateTime && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />

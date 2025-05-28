@@ -148,7 +148,9 @@ export function DataTableCore<T>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"} // 根据选择状态设置 data-state
-                className={index % 2 === 1 ? "bg-gray-50 dark:bg-gray-700/50" : ""} // 斑马纹效果
+                className={
+                  index % 2 === 1 ? "bg-gray-50 dark:bg-gray-700/50" : ""
+                } // 斑马纹效果
               >
                 {/* 行选择 Checkbox */}
                 {showCheckboxColumn && (
