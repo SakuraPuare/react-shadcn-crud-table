@@ -1,0 +1,29 @@
+# 源文件
+src/app/
+.next/
+public/
+node_modules/
+
+# 配置文件
+next.config.ts
+next-env.d.ts
+tsconfig.json
+tailwind.config.ts
+postcss.config.mjs
+components.json
+eslint.config.mjs
+
+# 开发文件
+.gitignore
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.nyc_output
+.cache
+.temp
+.tmp
+
+# 其他
+.rollup.cache/ 
